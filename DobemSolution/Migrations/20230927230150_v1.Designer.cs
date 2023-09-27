@@ -12,8 +12,8 @@ using Oracle.EntityFrameworkCore.Metadata;
 namespace DobemSolution.Migrations
 {
     [DbContext(typeof(OracleDbContext))]
-    [Migration("20230927003943_Initial2")]
-    partial class Initial2
+    [Migration("20230927230150_v1")]
+    partial class v1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -64,16 +64,11 @@ namespace DobemSolution.Migrations
                         .IsRequired()
                         .HasColumnType("NVARCHAR2(2000)");
 
-                    b.Property<int>("IdTurma")
-                        .HasColumnType("NUMBER(10)");
-
                     b.Property<string>("NomeCurso")
                         .IsRequired()
                         .HasColumnType("NVARCHAR2(2000)");
 
                     b.HasKey("IdCurso");
-
-                    b.HasIndex("IdTurma");
 
                     b.ToTable("Curso");
                 });
@@ -85,6 +80,12 @@ namespace DobemSolution.Migrations
                         .HasColumnType("NUMBER(10)");
 
                     OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<int>("CursoIdCurso")
+                        .HasColumnType("NUMBER(10)");
+
+                    b.Property<int?>("IdCurso")
+                        .HasColumnType("NUMBER(10)");
 
                     b.Property<bool>("autorizacao")
                         .HasColumnType("NUMBER(1)");
@@ -101,6 +102,8 @@ namespace DobemSolution.Migrations
                         .HasColumnType("NVARCHAR2(2000)");
 
                     b.HasKey("id");
+
+                    b.HasIndex("CursoIdCurso");
 
                     b.ToTable("Feedback");
                 });
@@ -181,21 +184,21 @@ namespace DobemSolution.Migrations
                     b.Navigation("Usuario");
                 });
 
-            modelBuilder.Entity("DoBemSolution.Models.Curso", b =>
+            modelBuilder.Entity("DoBemSolution.Models.Feedback", b =>
                 {
-                    b.HasOne("DoBemSolution.Models.Turma", "Turma")
-                        .WithMany()
-                        .HasForeignKey("IdTurma")
+                    b.HasOne("DoBemSolution.Models.Curso", "Curso")
+                        .WithMany("Feedbacks")
+                        .HasForeignKey("CursoIdCurso")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Turma");
+                    b.Navigation("Curso");
                 });
 
             modelBuilder.Entity("DoBemSolution.Models.Turma", b =>
                 {
                     b.HasOne("DoBemSolution.Models.Curso", "Curso")
-                        .WithMany()
+                        .WithMany("Turmas")
                         .HasForeignKey("IdCurso")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -212,6 +215,13 @@ namespace DobemSolution.Migrations
                         .IsRequired();
 
                     b.Navigation("Aluno");
+                });
+
+            modelBuilder.Entity("DoBemSolution.Models.Curso", b =>
+                {
+                    b.Navigation("Feedbacks");
+
+                    b.Navigation("Turmas");
                 });
 
             modelBuilder.Entity("DoBemSolution.Models.Turma", b =>

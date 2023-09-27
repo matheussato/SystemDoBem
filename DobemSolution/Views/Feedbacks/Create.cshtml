@@ -32,6 +32,9 @@
                     <input class="form-check-input" asp-for="autorizacao" /> @Html.DisplayNameFor(model => model.autorizacao)
                 </label>
             </div>
+            
+            @Html.HiddenFor(x => x.IdCurso)
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -40,7 +43,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Voltas para Lista</a>
 </div>
 
 @section Scripts {

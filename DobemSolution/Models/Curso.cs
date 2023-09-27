@@ -20,7 +20,8 @@ namespace DoBemSolution.Models
 
         public virtual ICollection<Turma> Turmas { get; set; }
 
-        public virtual IEnumerable<Feedback> Feedbacks { get; set; }
+
+        public virtual ICollection<Feedback> Feedbacks { get; set; }
 
     }
 }

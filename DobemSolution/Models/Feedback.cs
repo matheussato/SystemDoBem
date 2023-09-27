@@ -26,6 +26,7 @@ namespace DoBemSolution.Models
         [DisplayName("Autorização")]
         public bool autorizacao { set; get; }
 
+        [DisplayName("Curso")]
         public int? IdCurso { get; set; }
         public Curso Curso { get; set; }
     
