@@ -58,13 +58,11 @@ namespace DobemSolution.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("id,nome,texto,estrelas,autorizacao")] Feedback feedback)
         {
-            if (ModelState.IsValid)
-            {
+            
                 _context.Add(feedback);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
-            return View(feedback);
+           
         }
 
         // GET: Feedbacks/Edit/5

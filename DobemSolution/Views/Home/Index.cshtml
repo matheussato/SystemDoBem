@@ -1,6 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
-    var feedbacks = ViewData["feedbacks"] as IEnumerable<DoBemSolution.Models.Feedbacks>;
+    var feedbacks = ViewData["feedbacks"] as IEnumerable<DoBemSolution.Models.Feedback>;
 }
 
 <div class="bd-example">
@@ -14,8 +14,6 @@
 
         <!-- Slides do Carrossel -->
         <div class="carousel-inner">
-            @if (feedbacks != null)
-            {
                 @foreach (var feedback in feedbacks)
                 {
                     <div class="carousel-item @(feedback == feedbacks.First() ? "active" : "")">
@@ -37,7 +35,7 @@
                             </div>
                         </div>
                     </div>
-                }
+               
 
             }
         </div>

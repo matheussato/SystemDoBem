@@ -18,11 +18,16 @@ namespace DoBemSolution.Models
         public string texto { set; get; }
 
         [Required]
+        [Range(1,5)]
         [DisplayName("Estrelas")]
         public int estrelas { set; get; }
 
         [Required]
         [DisplayName("Autorização")]
         public bool autorizacao { set; get; }
+
+        public int? IdCurso { get; set; }
+        public Curso Curso { get; set; }
+    
     }
 }
