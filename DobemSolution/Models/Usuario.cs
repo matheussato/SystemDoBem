@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DoBemSolution.Models
@@ -9,12 +10,15 @@ namespace DoBemSolution.Models
         public int Id{ get; set; }
 
         [Required]
+        [DisplayName("Nome")]
         public string Name { get; set; }
 
         [Required]
+        [DisplayName("Email")]
         public string Email { get; set; }
 
         [Required]
+        [DisplayName("Senha")]
         public string Password { get; set; }
 
         public bool IsBlocked { get; set; }

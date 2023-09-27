@@ -22,7 +22,7 @@ namespace DobemSolution.Controllers
         // GET: Cursoes
         public async Task<IActionResult> Index()
         {
-            var oracleDbContext = _context.Curso.Include(c => c.Turma);
+            var oracleDbContext = _context.Curso.Include(c => c.Turmas);
             return View(await oracleDbContext.ToListAsync());
         }
 
@@ -35,7 +35,7 @@ namespace DobemSolution.Controllers
             }
 
             var curso = await _context.Curso
-                .Include(c => c.Turma)
+                .Include(c => c.Turmas)
                 .FirstOrDefaultAsync(m => m.IdCurso == id);
             if (curso == null)
             {
@@ -59,14 +59,12 @@ namespace DobemSolution.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdCurso,NomeCurso,CargaHorariaCurso,IdTurma")] Curso curso)
         {
-            if (ModelState.IsValid)
-            {
+           
                 _context.Add(curso);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
-            ViewData["IdTurma"] = new SelectList(_context.Turma, "IdTurma", "IdTurma", curso.IdTurma);
-            return View(curso);
+            
+    
         }
 
         // GET: Cursoes/Edit/5
@@ -82,7 +80,6 @@ namespace DobemSolution.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdTurma"] = new SelectList(_context.Turma, "IdTurma", "IdTurma", curso.IdTurma);
             return View(curso);
         }
 
@@ -118,7 +115,6 @@ namespace DobemSolution.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdTurma"] = new SelectList(_context.Turma, "IdTurma", "IdTurma", curso.IdTurma);
             return View(curso);
         }
 
@@ -131,7 +127,7 @@ namespace DobemSolution.Controllers
             }
 
             var curso = await _context.Curso
-                .Include(c => c.Turma)
+                .Include(c => c.Turmas)
                 .FirstOrDefaultAsync(m => m.IdCurso == id);
             if (curso == null)
             {

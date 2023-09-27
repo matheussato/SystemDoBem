@@ -1,8 +1,51 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    var feedbacks = ViewData["feedbacks"] as IEnumerable<DoBemSolution.Models.Feedbacks>;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="bd-example">
+    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            @for (var i = 0; i < feedbacks.Count(); i++)
+            {
+                <li data-target="#carouselExampleCaptions" data-slide-to="@i" class="@(i == 0 ? "active" : "")"></li>
+            }
+        </ol>
+
+        <!-- Slides do Carrossel -->
+        <div class="carousel-inner">
+            @if (feedbacks != null)
+            {
+                @foreach (var feedback in feedbacks)
+                {
+                    <div class="carousel-item @(feedback == feedbacks.First() ? "active" : "")">
+                        <img src="https://www.napratica.org.br/wp-content/uploads/2017/07/destaque-videogame.jpeg" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h3>
+                                @feedback.nome;
+                            </h3>
+
+                            <p>@feedback.texto</p>
+                            <div>
+                                <b-form-rating v-model="value" readonly></b-form-rating>
+                                <div>
+                                    @for (var i = 0; i < feedback.estrelas; i++)
+                                    {
+                                        <span class="fa fa-star checked"></span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            }
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </a>
+    </div>
 </div>

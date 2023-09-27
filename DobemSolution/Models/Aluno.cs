@@ -12,6 +12,7 @@ namespace DoBemSolution.Models
         public int IdAluno { get; set; }
 
         [Required]
+        [DisplayName("Código do Aluno")]
         public string? RegistroAluno { get; set; }
 
 
@@ -22,6 +23,7 @@ namespace DoBemSolution.Models
 
 
         [ForeignKey("Turma")]
+        [DisplayName("Turma")]
         public int IdTurma { get; set; }
         public virtual Turma? Turma { get; set; }
 
