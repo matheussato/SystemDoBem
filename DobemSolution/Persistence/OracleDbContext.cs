@@ -12,5 +12,6 @@ namespace DobemSolution.Persistence
         public DbSet<Usuario> Usuario { set; get; }
 
         public OracleDbContext(DbContextOptions options) : base(options) { }
+
     }
 }

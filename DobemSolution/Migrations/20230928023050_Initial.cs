@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DobemSolution.Migrations
 {
     /// <inheritdoc />
-    public partial class v1 : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -35,18 +35,16 @@ namespace DobemSolution.Migrations
                     texto = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
                     estrelas = table.Column<int>(type: "NUMBER(10)", nullable: false),
                     autorizacao = table.Column<bool>(type: "NUMBER(1)", nullable: false),
-                    IdCurso = table.Column<int>(type: "NUMBER(10)", nullable: true),
-                    CursoIdCurso = table.Column<int>(type: "NUMBER(10)", nullable: false)
+                    CursoId = table.Column<int>(type: "NUMBER(10)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Feedback", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Feedback_Curso_CursoIdCurso",
-                        column: x => x.CursoIdCurso,
+                        name: "FK_Feedback_Curso_CursoId",
+                        column: x => x.CursoId,
                         principalTable: "Curso",
-                        principalColumn: "IdCurso",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "IdCurso");
                 });
 
             migrationBuilder.CreateTable(
@@ -125,9 +123,9 @@ namespace DobemSolution.Migrations
                 column: "IdTurma");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Feedback_CursoIdCurso",
+                name: "IX_Feedback_CursoId",
                 table: "Feedback",
-                column: "CursoIdCurso");
+                column: "CursoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Turma_IdCurso",

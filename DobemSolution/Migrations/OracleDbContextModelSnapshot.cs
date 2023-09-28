@@ -78,10 +78,7 @@ namespace DobemSolution.Migrations
 
                     OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
-                    b.Property<int>("CursoIdCurso")
-                        .HasColumnType("NUMBER(10)");
-
-                    b.Property<int?>("IdCurso")
+                    b.Property<int?>("CursoId")
                         .HasColumnType("NUMBER(10)");
 
                     b.Property<bool>("autorizacao")
@@ -100,7 +97,7 @@ namespace DobemSolution.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("CursoIdCurso");
+                    b.HasIndex("CursoId");
 
                     b.ToTable("Feedback");
                 });
@@ -185,9 +182,7 @@ namespace DobemSolution.Migrations
                 {
                     b.HasOne("DoBemSolution.Models.Curso", "Curso")
                         .WithMany("Feedbacks")
-                        .HasForeignKey("CursoIdCurso")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CursoId");
 
                     b.Navigation("Curso");
                 });

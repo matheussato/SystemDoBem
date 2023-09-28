@@ -48,7 +48,7 @@ namespace DobemSolution.Controllers
         // GET: Turmas/Create
         public IActionResult Create()
         {
-            ViewData["IdCurso"] = new SelectList(_context.Curso, "IdCurso", "CargaHorariaCurso");
+            ViewData["IdCurso"] = new SelectList(_context.Curso, "IdCurso", "NomeCurso");
             return View();
         }
 
@@ -59,12 +59,11 @@ namespace DobemSolution.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdTurma,Inicio,Encerramento,IdCurso")] Turma turma)
         {
-            if (ModelState.IsValid)
-            {
+         
                 _context.Add(turma);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
+           
             ViewData["IdCurso"] = new SelectList(_context.Curso, "IdCurso", "CargaHorariaCurso", turma.IdCurso);
             return View(turma);
         }

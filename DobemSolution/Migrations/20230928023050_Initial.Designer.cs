@@ -12,8 +12,8 @@ using Oracle.EntityFrameworkCore.Metadata;
 namespace DobemSolution.Migrations
 {
     [DbContext(typeof(OracleDbContext))]
-    [Migration("20230927230150_v1")]
-    partial class v1
+    [Migration("20230928023050_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -81,10 +81,7 @@ namespace DobemSolution.Migrations
 
                     OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
-                    b.Property<int>("CursoIdCurso")
-                        .HasColumnType("NUMBER(10)");
-
-                    b.Property<int?>("IdCurso")
+                    b.Property<int?>("CursoId")
                         .HasColumnType("NUMBER(10)");
 
                     b.Property<bool>("autorizacao")
@@ -103,7 +100,7 @@ namespace DobemSolution.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("CursoIdCurso");
+                    b.HasIndex("CursoId");
 
                     b.ToTable("Feedback");
                 });
@@ -188,9 +185,7 @@ namespace DobemSolution.Migrations
                 {
                     b.HasOne("DoBemSolution.Models.Curso", "Curso")
                         .WithMany("Feedbacks")
-                        .HasForeignKey("CursoIdCurso")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CursoId");
 
                     b.Navigation("Curso");
                 });
