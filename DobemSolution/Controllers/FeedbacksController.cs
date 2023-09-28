@@ -46,9 +46,9 @@ namespace DobemSolution.Controllers
         }
 
         // GET: Feedbacks/Create
-        public IActionResult Create(int? CursoId )
+        public IActionResult Create()
         {
-            ViewData["CursoId"] = new SelectList(_context.Turma, "CursoId", "CursoId",CursoId);
+            ViewData["IdCurso"] = new SelectList(_context.Curso, "IdCurso", "NomeCurso");
 
             return View();
         }
@@ -58,7 +58,7 @@ namespace DobemSolution.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,nome,texto,estrelas,autorizacao")] Feedback feedback)
+        public async Task<IActionResult> Create([Bind("id,nome,texto,estrelas,autorizacao,CursoId")] Feedback feedback)
         {
             
                 _context.Add(feedback);

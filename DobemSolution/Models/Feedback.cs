@@ -7,6 +7,7 @@ namespace DoBemSolution.Models
     public class Feedback
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { set; get; }
 
         [Required]
@@ -25,8 +26,9 @@ namespace DoBemSolution.Models
         [Required]
         [DisplayName("Autorização")]
         public bool autorizacao { set; get; }
-        
 
+
+        [DisplayName("Curso")]
         public int? CursoId { get; set; }
         public Curso Curso { get; set; }
     

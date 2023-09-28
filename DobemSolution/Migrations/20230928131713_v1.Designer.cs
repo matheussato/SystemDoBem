@@ -12,8 +12,8 @@ using Oracle.EntityFrameworkCore.Metadata;
 namespace DobemSolution.Migrations
 {
     [DbContext(typeof(OracleDbContext))]
-    [Migration("20230928023050_Initial")]
-    partial class Initial
+    [Migration("20230928131713_v1")]
+    partial class v1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -184,7 +184,7 @@ namespace DobemSolution.Migrations
             modelBuilder.Entity("DoBemSolution.Models.Feedback", b =>
                 {
                     b.HasOne("DoBemSolution.Models.Curso", "Curso")
-                        .WithMany("Feedbacks")
+                        .WithMany()
                         .HasForeignKey("CursoId");
 
                     b.Navigation("Curso");
@@ -214,8 +214,6 @@ namespace DobemSolution.Migrations
 
             modelBuilder.Entity("DoBemSolution.Models.Curso", b =>
                 {
-                    b.Navigation("Feedbacks");
-
                     b.Navigation("Turmas");
                 });
 

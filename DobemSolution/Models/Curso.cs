@@ -8,6 +8,7 @@ namespace DoBemSolution.Models
     {
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdCurso { get; set; }
 
         [Required]
@@ -20,8 +21,6 @@ namespace DoBemSolution.Models
 
         public virtual ICollection<Turma> Turmas { get; set; }
 
-
-        public virtual ICollection<Feedback> Feedbacks { get; set; }
 
     }
 }

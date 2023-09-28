@@ -181,7 +181,7 @@ namespace DobemSolution.Migrations
             modelBuilder.Entity("DoBemSolution.Models.Feedback", b =>
                 {
                     b.HasOne("DoBemSolution.Models.Curso", "Curso")
-                        .WithMany("Feedbacks")
+                        .WithMany()
                         .HasForeignKey("CursoId");
 
                     b.Navigation("Curso");
@@ -211,8 +211,6 @@ namespace DobemSolution.Migrations
 
             modelBuilder.Entity("DoBemSolution.Models.Curso", b =>
                 {
-                    b.Navigation("Feedbacks");
-
                     b.Navigation("Turmas");
                 });
 
