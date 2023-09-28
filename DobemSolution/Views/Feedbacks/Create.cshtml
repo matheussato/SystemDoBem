@@ -4,7 +4,7 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Cadastro de Feedback</h1>
 
 <h4>Feedback</h4>
 <hr />
@@ -22,11 +22,13 @@
                 <input asp-for="texto" class="form-control" />
                 <span asp-validation-for="texto" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="estrelas" class="control-label"></label>
                 <input asp-for="estrelas" class="form-control" />
                 <span asp-validation-for="estrelas" class="text-danger"></span>
             </div>
+
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="autorizacao" /> @Html.DisplayNameFor(model => model.autorizacao)
@@ -46,7 +48,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Voltas para Lista</a>
+    <a asp-action="Index">Voltar para Lista</a>
 </div>
 
 @section Scripts {

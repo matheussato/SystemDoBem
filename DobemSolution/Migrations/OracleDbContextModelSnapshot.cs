@@ -30,19 +30,26 @@ namespace DobemSolution.Migrations
 
                     OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdAluno"));
 
-                    b.Property<int>("Id")
-                        .HasColumnType("NUMBER(10)");
+                    b.Property<string>("EmailAluno")
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.Property<int>("IdTurma")
                         .HasColumnType("NUMBER(10)");
+
+                    b.Property<string>("NomeAluno")
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR2(2000)");
 
                     b.Property<string>("RegistroAluno")
                         .IsRequired()
                         .HasColumnType("NVARCHAR2(2000)");
 
-                    b.HasKey("IdAluno");
+                    b.Property<string>("SenhaAluno")
+                        .IsRequired()
+                        .HasColumnType("NVARCHAR2(2000)");
 
-                    b.HasIndex("Id");
+                    b.HasKey("IdAluno");
 
                     b.HasIndex("IdTurma");
 
@@ -126,47 +133,8 @@ namespace DobemSolution.Migrations
                     b.ToTable("Turma");
                 });
 
-            modelBuilder.Entity("DoBemSolution.Models.Usuario", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("NUMBER(10)");
-
-                    OraclePropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
-
-                    b.Property<int>("IdAluno")
-                        .HasColumnType("NUMBER(10)");
-
-                    b.Property<bool>("IsBlocked")
-                        .HasColumnType("NUMBER(1)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("NVARCHAR2(2000)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdAluno");
-
-                    b.ToTable("Usuario");
-                });
-
             modelBuilder.Entity("DoBemSolution.Models.Aluno", b =>
                 {
-                    b.HasOne("DoBemSolution.Models.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("DoBemSolution.Models.Turma", "Turma")
                         .WithMany("Alunos")
                         .HasForeignKey("IdTurma")
@@ -174,8 +142,6 @@ namespace DobemSolution.Migrations
                         .IsRequired();
 
                     b.Navigation("Turma");
-
-                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("DoBemSolution.Models.Feedback", b =>
@@ -196,17 +162,6 @@ namespace DobemSolution.Migrations
                         .IsRequired();
 
                     b.Navigation("Curso");
-                });
-
-            modelBuilder.Entity("DoBemSolution.Models.Usuario", b =>
-                {
-                    b.HasOne("DoBemSolution.Models.Aluno", "Aluno")
-                        .WithMany()
-                        .HasForeignKey("IdAluno")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Aluno");
                 });
 
             modelBuilder.Entity("DoBemSolution.Models.Curso", b =>

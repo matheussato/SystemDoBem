@@ -22,7 +22,7 @@ namespace DobemSolution.Controllers
         // GET: Alunos
         public async Task<IActionResult> Index()
         {
-            var oracleDbContext = _context.Aluno.Include(a => a.Turma).Include(a => a.Usuario);
+            var oracleDbContext = _context.Aluno.Include(a => a.Turma);
             return View(await oracleDbContext.ToListAsync());
         }
 
@@ -36,7 +36,6 @@ namespace DobemSolution.Controllers
 
             var aluno = await _context.Aluno
                 .Include(a => a.Turma)
-                .Include(a => a.Usuario)
                 .FirstOrDefaultAsync(m => m.IdAluno == id);
             if (aluno == null)
             {
@@ -50,7 +49,6 @@ namespace DobemSolution.Controllers
         public IActionResult Create()
         {
             ViewData["IdTurma"] = new SelectList(_context.Turma, "IdTurma", "IdTurma");
-            ViewData["Id"] = new SelectList(_context.Usuario, "Id", "Email");
             return View();
         }
 
@@ -59,7 +57,7 @@ namespace DobemSolution.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdAluno,RegistroAluno,Id,IdTurma")] Aluno aluno)
+        public async Task<IActionResult> Create([Bind("IdAluno,RegistroAluno,NomeAluno,EmailAluno,SenhaAluno,IdTurma")] Aluno aluno)
         {
             if (ModelState.IsValid)
             {
@@ -68,7 +66,6 @@ namespace DobemSolution.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IdTurma"] = new SelectList(_context.Turma, "IdTurma", "IdTurma", aluno.IdTurma);
-            ViewData["Id"] = new SelectList(_context.Usuario, "Id", "Email", aluno.Id);
             return View(aluno);
         }
 
@@ -86,7 +83,6 @@ namespace DobemSolution.Controllers
                 return NotFound();
             }
             ViewData["IdTurma"] = new SelectList(_context.Turma, "IdTurma", "IdTurma", aluno.IdTurma);
-            ViewData["Id"] = new SelectList(_context.Usuario, "Id", "Email", aluno.Id);
             return View(aluno);
         }
 
@@ -95,7 +91,7 @@ namespace DobemSolution.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdAluno,RegistroAluno,Id,IdTurma")] Aluno aluno)
+        public async Task<IActionResult> Edit(int id, [Bind("IdAluno,RegistroAluno,NomeAluno,EmailAluno,SenhaAluno,IdTurma")] Aluno aluno)
         {
             if (id != aluno.IdAluno)
             {
@@ -123,7 +119,6 @@ namespace DobemSolution.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["IdTurma"] = new SelectList(_context.Turma, "IdTurma", "IdTurma", aluno.IdTurma);
-            ViewData["Id"] = new SelectList(_context.Usuario, "Id", "Email", aluno.Id);
             return View(aluno);
         }
 
@@ -137,7 +132,6 @@ namespace DobemSolution.Controllers
 
             var aluno = await _context.Aluno
                 .Include(a => a.Turma)
-                .Include(a => a.Usuario)
                 .FirstOrDefaultAsync(m => m.IdAluno == id);
             if (aluno == null)
             {

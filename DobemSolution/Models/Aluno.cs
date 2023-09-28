@@ -15,11 +15,17 @@ namespace DoBemSolution.Models
         [DisplayName("Código do Aluno")]
         public string? RegistroAluno { get; set; }
 
+        [Required]
+        [DisplayName("Nome")]
+        public string NomeAluno { get; set; }
 
-        [ForeignKey("Usuario")]
-        [DisplayName("Usuario")]
-        public int Id { get; set; }
-        public virtual Usuario Usuario { get; set; }
+        [Required]
+        [DisplayName("Email")]
+        public string EmailAluno { get; set; }
+
+        [Required]
+        [DisplayName("Senha")]
+        public string SenhaAluno { get; set; }
 
 
         [ForeignKey("Turma")]

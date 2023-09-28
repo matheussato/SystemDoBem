@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DobemSolution.Migrations
 {
     /// <inheritdoc />
-    public partial class v1 : Migration
+    public partial class V1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -75,7 +75,9 @@ namespace DobemSolution.Migrations
                     IdAluno = table.Column<int>(type: "NUMBER(10)", nullable: false)
                         .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
                     RegistroAluno = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
-                    Id = table.Column<int>(type: "NUMBER(10)", nullable: false),
+                    NomeAluno = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    EmailAluno = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
+                    SenhaAluno = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
                     IdTurma = table.Column<int>(type: "NUMBER(10)", nullable: false)
                 },
                 constraints: table =>
@@ -88,34 +90,6 @@ namespace DobemSolution.Migrations
                         principalColumn: "IdTurma",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateTable(
-                name: "Usuario",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "NUMBER(10)", nullable: false)
-                        .Annotation("Oracle:Identity", "START WITH 1 INCREMENT BY 1"),
-                    Name = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
-                    Email = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
-                    Password = table.Column<string>(type: "NVARCHAR2(2000)", nullable: false),
-                    IsBlocked = table.Column<bool>(type: "NUMBER(1)", nullable: false),
-                    IdAluno = table.Column<int>(type: "NUMBER(10)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Usuario", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Usuario_Aluno_IdAluno",
-                        column: x => x.IdAluno,
-                        principalTable: "Aluno",
-                        principalColumn: "IdAluno",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Aluno_Id",
-                table: "Aluno",
-                column: "Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Aluno_IdTurma",
@@ -131,31 +105,13 @@ namespace DobemSolution.Migrations
                 name: "IX_Turma_IdCurso",
                 table: "Turma",
                 column: "IdCurso");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Usuario_IdAluno",
-                table: "Usuario",
-                column: "IdAluno");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Aluno_Usuario_Id",
-                table: "Aluno",
-                column: "Id",
-                principalTable: "Usuario",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Aluno_Turma_IdTurma",
-                table: "Aluno");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Aluno_Usuario_Id",
-                table: "Aluno");
+            migrationBuilder.DropTable(
+                name: "Aluno");
 
             migrationBuilder.DropTable(
                 name: "Feedback");
@@ -165,12 +121,6 @@ namespace DobemSolution.Migrations
 
             migrationBuilder.DropTable(
                 name: "Curso");
-
-            migrationBuilder.DropTable(
-                name: "Usuario");
-
-            migrationBuilder.DropTable(
-                name: "Aluno");
         }
     }
 }

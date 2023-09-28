@@ -10,7 +10,6 @@ namespace DobemSolution.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
         private readonly OracleDbContext _oracleDbContext;
 
         public HomeController(ILogger<HomeController> logger, OracleDbContext oracleDbContext)
@@ -22,7 +21,8 @@ namespace DobemSolution.Controllers
         public IActionResult Index()
         {
             ViewData["feedbacks"] = _oracleDbContext
-                .Feedback.Include(x => x.Curso)
+                .Feedback
+                .Include(x => x.Curso)
                 .Where(x => x.autorizacao & x.estrelas >= 3)
                 .Take(5);
 

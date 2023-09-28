@@ -4,7 +4,7 @@
 }
 
 <div class="bd-example">
-    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+    <div id="carouselExampleCaptions" class="carousel carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             @for (var i = 0; i < feedbacks.Count(); i++)
             {
@@ -20,12 +20,13 @@
                         <img src="https://www.napratica.org.br/wp-content/uploads/2017/07/destaque-videogame.jpeg" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h3>
-                                @feedback.nome;
+                                @feedback.nome
                             </h3>
 
                             <p>@feedback.texto</p>
                             <div>
                                 <b-form-rating v-model="value" readonly></b-form-rating>
+                                
                                 <div>
                                     @for (var i = 0; i < feedback.estrelas; i++)
                                     {
@@ -38,12 +39,22 @@
                
 
             }
-        </div>
+         </div>
         <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <style>
+                .button{
+                    color: white;
+                }
+            </style>
         </a>
         <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <style>
+                .button{
+                    color: white;
+                }
+            </style>
         </a>
     </div>
 </div>
