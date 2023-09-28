@@ -46,9 +46,9 @@ namespace DobemSolution.Controllers
         }
 
         // GET: Feedbacks/Create
-        public IActionResult Create(int? IdCurso )
+        public IActionResult Create(int? CursoId )
         {
-            ViewData["IdCurso"] = new SelectList(_context.Curso, "Id", "Name", IdCurso);
+            ViewData["CursoId"] = new SelectList(_context.Turma, "CursoId", "CursoId",CursoId);
 
             return View();
         }
