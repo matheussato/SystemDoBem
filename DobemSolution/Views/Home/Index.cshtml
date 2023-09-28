@@ -1,6 +1,14 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
     var feedbacks = ViewData["feedbacks"] as IEnumerable<DoBemSolution.Models.Feedback>;
+    var listaDeImagens = new List<string>
+    {
+        "https://img.freepik.com/fotos-gratis/material-escolar-vista-superior-sobre-o-fundo-da-lousa-espaco-livre_73683-2217.jpg?w=1380&t=st=1695943436~exp=1695944036~hmac=a351d69413fb3f4c299b119bbfeeb3454a07070aec86da6af13a85ab1da5991e",
+        "https://img.freepik.com/fotos-gratis/livro-com-fundo-de-placa-verde_1150-3837.jpg?w=1380&t=st=1695944112~exp=1695944712~hmac=3cef2fabf11d956d48111358b4415b49d4fb8e2fc7a79a33a4c5e681f52f9ac3",
+        "https://img.freepik.com/fotos-gratis/silhuetas-de-uma-arvore-e-um-homem-em-um-livro_1232-292.jpg?w=1380&t=st=1695944130~exp=1695944730~hmac=ff9a49e66fa310d31ee531099bdc84445fdcb5803a772065fd41a3a5c67c77d1",
+        "https://img.freepik.com/fotos-gratis/pessoa-segurando-uma-lampada-com-tampa-de-formatura_23-2148721299.jpg?w=1380&t=st=1695944733~exp=1695945333~hmac=e642b65ba596914db2fc4c01eaf9a2cd22d2323dd907ed0c957f8e5023dd08f5",
+        "https://img.freepik.com/fotos-gratis/abra-a-mochila-com-papelaria-e-aquarelas_23-2148179051.jpg?w=1380&t=st=1695944819~exp=1695945419~hmac=63440359aa0862dc5c46f2e55bef3a3dba38c695760bbea60053ef827711953e"
+    };
 }
 
 <div class="bd-example">
@@ -14,36 +22,30 @@
 
         <!-- Slides do Carrossel -->
         <div class="carousel-inner">
-                @foreach (var feedback in feedbacks)
-                {
-                    <div class="carousel-item @(feedback == feedbacks.First() ? "active" : "")">
-                        <img src="https://www.napratica.org.br/wp-content/uploads/2017/07/destaque-videogame.jpeg" class="d-block w-100" alt="...">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h3>
-                                @feedback.nome
-                            </h3>
-
-                            <p>@feedback.texto</p>
-                            <div>
-                                <b-form-rating v-model="value" readonly></b-form-rating>
-                                
-                                <div>
-                                    @for (var i = 0; i < feedback.estrelas; i++)
-                                    {
-                                        <span class="fa fa-star checked"></span>
-                                    }
-                                </div>
-                            </div>
+            @for (var i = 0; i < feedbacks.Count(); i++)
+            {
+                var feedback = feedbacks.ElementAt(i);
+                <div class="carousel-item @(i == 0 ? "active" : "")">
+                    <img src="@listaDeImagens.ElementAtOrDefault(i)"
+                         class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3>@feedback.nome</h3>
+                        <h5>@feedback.Curso.NomeCurso</h5>
+                        <h5>@feedback.texto</h5>
+                        <div>
+                            @for (var j = 0; j < feedback.estrelas; j++)
+                            {
+                                <span class="fa fa-star checked"></span>
+                            }
                         </div>
                     </div>
-               
-
+                </div>
             }
-         </div>
+        </div>
         <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <style>
-                .button{
+                .button {
                     color: white;
                 }
             </style>
@@ -51,7 +53,7 @@
         <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <style>
-                .button{
+                .button {
                     color: white;
                 }
             </style>
