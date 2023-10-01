@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
@@ -24,34 +25,33 @@
     </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <header class="menu">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-md navbar-fixed navbar-bg border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand fs-4 " asp-area="" asp-controller="Home" asp-action="Index">
-                    <i class="bi bi-backpack2 fs-5"></i> 
-                     DobemSolution
-                    <i class="bi bi-backpack2 fs-5"></i>
+                <a class=" fs-4 logo" asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="bi bi-backpack2 fs-4"></i> 
+                     DoBemSolution
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1 fs-4">
+                    <ul class="navbar-nav flex-grow-1 fs-5 justify-content-end">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Início</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Início</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Alunos" asp-action="Index">Aluno</a>
+                            <a class="nav-link" asp-area="" asp-controller="Alunos" asp-action="Index">Alunos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Cursoes" asp-action="Index">Cursos</a>
+                            <a class="nav-link" asp-area="" asp-controller="Cursoes" asp-action="Index">Cursos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Feedbacks" asp-action="Index">Feedbacks</a>
+                            <a class="nav-link" asp-area="" asp-controller="Feedbacks" asp-action="Index">Feedbacks</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Turmas" asp-action="Index">Turmas</a>
+                            <a class="nav-link" asp-area="" asp-controller="Turmas" asp-action="Index">Turmas</a>
                         </li>
                     </ul>
                 </div>
